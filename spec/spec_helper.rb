@@ -16,6 +16,13 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
+# Load from the solutions directory instead of the lib directory.
+# Comment this out to load from the lib directory.
+lib_index = $LOAD_PATH.index { |v| v.match('go_fish/lib') }
+path = File.expand_path(File.dirname(__FILE__))
+$LOAD_PATH[lib_index] = path + '/../solution'
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
