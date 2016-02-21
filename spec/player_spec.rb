@@ -16,6 +16,24 @@ describe Player do
     expect(player.hand).to eq(hand)
   end
 
+  describe "#take_cards_from" do
+    let(:taken_player) { Player.new("Player Two") }
+
+    before(:each) do
+      hand = double(:hand, :receive_cards => nil, :take_cards => nil)
+      player.hand = hand
+    end
+
+    it "should take cards from another player" do
+      other_hand = double(:hand)
+      expect(other_hand).to receive(:take_cards).and_return([:ace])
+      taken_player.hand = other_hand
+
+      expect(player.hand).to receive(:receive_cards).with([:ace])
+      player.take_cards_from(taken_player, :ace)
+    end
+  end
+
   describe "#score_books" do
     it "adds a point for a book" do
       hand = double(:hand, :books => [:deuces], :take_cards => nil)
