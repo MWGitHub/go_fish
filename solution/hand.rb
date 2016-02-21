@@ -25,12 +25,10 @@ class Hand
     taken_cards
   end
 
-  def book
+  def books
     count_map = Hash.new(0)
     cards.each { |card| count_map[card.value] += 1 }
-    books = count_map.select { |value, count| count == 4 }.keys
-    @cards = cards.reject { |card| books.include?(card.value) }
-    books
+    count_map.select { |value, count| count == 4 }.keys
   end
 
   def fish(deck)

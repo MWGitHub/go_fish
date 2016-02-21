@@ -108,7 +108,7 @@ describe Hand do
     end
   end
 
-  describe "#book" do
+  describe "#books" do
     it "returns set values" do
       cards = [
         Card.new(:spades, :deuce),
@@ -123,22 +123,7 @@ describe Hand do
       ]
       hand = Hand.new(cards)
 
-      expect(hand.book).to eq([:deuce, :four])
-    end
-
-    it "removes cards in sets" do
-      cards = [
-        Card.new(:spades, :deuce),
-        Card.new(:hearts, :deuce),
-        Card.new(:clubs, :deuce),
-        Card.new(:diamonds, :deuce),
-        Card.new(:diamonds, :five),
-      ]
-      hand = Hand.new(cards)
-
-      hand.book
-      expect(hand.cards.count).to eq(1)
-      expect(hand.cards[0].value).to eq(:five)
+      expect(hand.books).to eq([:deuce, :four])
     end
   end
 
