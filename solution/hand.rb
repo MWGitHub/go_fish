@@ -17,6 +17,10 @@ class Hand
     cards.any? { |card| card.value == value }
   end
 
+  def receive_cards(cards)
+    @cards += cards
+  end
+
   def take_cards(value)
     raise StandardError.new unless has_card?(value)
 

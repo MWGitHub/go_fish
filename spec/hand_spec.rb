@@ -60,6 +60,27 @@ describe Hand do
     end
   end
 
+  describe "#receive_cards" do
+    it "receives a four" do
+      hand = Hand.new([])
+      four = Card.new(:spades, :four)
+      hand.receive_cards([four])
+
+      expect(hand.cards[0]).to eq(four)
+    end
+
+    it "receives multiple cards" do
+      hand = Hand.new([])
+      cards = [
+        Card.new(:spades, :four),
+        Card.new(:hearts, :deuce)
+      ]
+      hand.receive_cards(cards)
+
+      expect(hand.cards).to eq(cards)
+    end
+  end
+
   describe "#take_cards" do
     it "takes a four" do
       four = Card.new(:spades, :four)
